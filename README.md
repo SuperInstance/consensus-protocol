@@ -132,6 +132,26 @@ If a log entry is committed in term T, then all leaders for terms > T will conta
 - **Leader Completeness**: Committed entries appear in all future leaders
 - **State Machine Safety**: If a node applies entry at index i, no other node applies a different entry at index i
 
+## Safety Properties
+
+- **Election Safety**: At most one leader per term
+- **Leader Append-Only**: Leaders never overwrite their own log
+- **Log Matching**: Matching entries imply matching prefixes
+- **Leader Completeness**: Committed entries appear in all future leaders
+- **State Machine Safety**: If a node applies entry at index i, no other node applies a different entry at index i
+
+## Implementation Notes
+
+- All structures are `Send + Sync` safe (no interior mutability with `RefCell`)
+- The election timeout should be randomized in production to avoid split votes
+- Log compaction (snapshotting) is not implemented but can be layered on top
+- This is a library, not a full Raft implementation — it provides building blocks
+
+## References
+
+- Ongaro, D., & Ousterhout, J. (2014). *In Search of an Understandable Consensus Algorithm*. USENIX ATC.
+- Howard, H., Malkhi, D., & Spiegelman, A. (2016). *Flexible Paxos: Quorum Intersection Revisited*. PODC.
+
 ## License
 
 MIT
