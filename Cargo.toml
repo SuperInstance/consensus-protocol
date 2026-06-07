@@ -1,0 +1,9 @@
+[package]
+name = "consensus-protocol"
+version = "0.1.0"
+edition = "2021"
+description = "Distributed consensus algorithms implementing Raft-style leader election, log replication, and commit tracking for fault-tolerant distributed systems"
+license = "MIT"
+repository = "https://github.com/SuperInstance/consensus-protocol"
+
+[dependencies]
